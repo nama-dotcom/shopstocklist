@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Stock Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1>Shop Stock Tracker</h1>
+      <p class="subtitle">Keep track of your items, prices and quantities</p>
+    </header>
+
+    <!-- Top Stats Counter -->
+    <section class="stats-container" aria-label="Stock Statistics">
+      <div class="stat-card total-card">
+        <span class="stat-label">Total Items</span>
+        <span class="stat-value" id="totalCount">0</span>
+      </div>
+      <div class="stat-card quantity-card">
+        <span class="stat-label">Total Quantity</span>
+        <span class="stat-value" id="quantityCount">0</span>
+      </div>
+      <div class="stat-card value-card">
+        <span class="stat-label">Stock Value</span>
+        <span class="stat-value" id="valueCount">$0.00</span>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      <!-- Stock Form Card -->
+      <section class="card form-card">
+        <h2 id="formTitle">Add Stock Item</h2>
+        <form id="stockForm" autocomplete="off">
+          <input type="hidden" id="itemId">
+
+          <div class="form-group">
+            <label for="itemName">Item Name <span class="required">*</span></label>
+            <input
+              type="text"
+              id="itemName"
+              placeholder="e.g. Rice (50kg bag)"
+              required
+              maxlength="60"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="itemPrice">Price <span class="required">*</span></label>
+            <input
+              type="number"
+              id="itemPrice"
+              placeholder="e.g. 2500"
+              required
+              min="0"
+              step="0.01"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="itemQuantity">Quantity Left <span class="required">*</span></label>
+            <input
+              type="number"
+              id="itemQuantity"
+              placeholder="e.g. 20"
+              required
+              min="0"
+              step="1"
+            >
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+              <span id="submitBtnText">Add Item</span>
+            </button>
+            <button type="button" id="cancelEditBtn" class="btn btn-secondary" style="display: none;">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Stock List Card -->
+      <section class="card list-card">
+        <div class="list-header">
+          <h2>Stock List</h2>
+          <div class="controls-wrapper">
+            <div class="search-box">
+              <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by item name..."
+                aria-label="Search stock items by name"
+              >
+              <button type="button" id="clearSearchBtn" class="clear-btn" aria-label="Clear search" style="display: none;">&times;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stock Items Container -->
+        <div id="itemsContainer" class="items-container">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Friendly Empty State Message -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+          <div class="empty-icon">📦</div>
+          <h3 id="emptyTitle">No stock items yet</h3>
+          <p id="emptyMessage">Use the form to add your first stock item.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
